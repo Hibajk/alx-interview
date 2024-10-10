@@ -1,22 +1,19 @@
 #!/usr/bin/python3
-"""coin change problem"""
+"""island perimeter task"""
 
 
-def makeChange(coins, total):
-    """func that finds the minimum number of coins needed
-    to make a given amount of money"""
+def island_perimeter(grid):
+    """function that calculates the perimeter
+     of a single island in a grid"""
+    perim = 0
+    for i in range(len(grid)):
+        for x in range(len(grid[i])):
+            if grid[i][x] == 1:
+                perim += 4
+                if i > 0 and grid[i - 1][x] == 1:
+                    perim -= 2
 
-    if total <= 0:
-        return 0
+                if x > 0 and grid[i][x - 1] == 1:
+                    perim -= 2
 
-    given_coins = sorted(coins, reverse=True)
-    total_coins = 0
-
-    for coin in given_coins:
-        while total >= coin:
-            total_coins += 1
-            total -= coin
-    if total == 0:
-        return total_coins
-
-    return -1
+    return perim
